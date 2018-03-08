@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>6a72575f-9457-445e-9d5e-9449590f7e45</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Android</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)src\ExtHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)src\Localize.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)src\ThreadUtil.cs" />
+  </ItemGroup>
+</Project>
