@@ -1,6 +1,6 @@
 ﻿using Android.OS;
 using Eq.Utility;
-using Eq.Utility.Android;
+using Eq.Utility.Droid;
 using Java.Lang;
 using NUnit.Framework;
 using System;

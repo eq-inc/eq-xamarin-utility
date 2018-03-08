@@ -1,8 +1,8 @@
 ﻿using Android.OS;
-using Eq.Utility.Android;
+using Eq.Utility.Droid;
 
 [assembly: Xamarin.Forms.Dependency(typeof(ThreadUtil_Android))]
-namespace Eq.Utility.Android
+namespace Eq.Utility.Droid
 {
     public class ThreadUtil_Android : IThreadUtil
     {

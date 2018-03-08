@@ -9,7 +9,10 @@
     <Import_RootNamespace>interface</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)src\Constant.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\ILocalize.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)src\IMediaPlayer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)src\IProximitySensor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\IThreadUtil.cs" />
   </ItemGroup>
 </Project>

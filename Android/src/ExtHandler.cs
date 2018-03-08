@@ -1,7 +1,7 @@
 ﻿using Android.OS;
 using System.Collections.Generic;
 
-namespace Eq.Utility.Android
+namespace Eq.Utility.Droid
 {
     public class ExtHandler
     {

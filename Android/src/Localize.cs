@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Globalization;
 
-namespace Eq.Utility.Android
+namespace Eq.Utility.Droid
 {
     public class Localize : ILocalize
     {
