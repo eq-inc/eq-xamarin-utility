@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Threading;
 using System.Globalization;
+using Eq.Utility.Droid;
 
+[assembly: Xamarin.Forms.Dependency(typeof(Localize_Android))]
 namespace Eq.Utility.Droid
 {
-    public class Localize : ILocalize
+    public class Localize_Android : ILocalize
     {
         public void SetLocale(CultureInfo ci)
         {

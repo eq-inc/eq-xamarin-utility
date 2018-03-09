@@ -14,5 +14,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)src\IMediaPlayer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\IProximitySensor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\IThreadUtil.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)src\AbstractTranslateExtension.cs" />
   </ItemGroup>
 </Project>

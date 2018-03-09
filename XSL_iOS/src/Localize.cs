@@ -2,10 +2,12 @@
 using System.Globalization;
 using System.Threading;
 using Foundation;
+using Eq.Utility.iOS;
 
+[assembly: Xamarin.Forms.Dependency(typeof(Localize_iOS))]
 namespace Eq.Utility.iOS
 {
-    public class Localize : ILocalize
+    public class Localize_iOS : ILocalize
     {
         public void SetLocale(CultureInfo ci)
         {
