@@ -24,8 +24,8 @@
 |Xamarin.Forms.Xaml|Xamarin|Xamarin.Formsをインストールすると追加される|
 
 # 参照が必要なプロジェクト
-* SharedLibrary - DotNetStandardUtility
-* SharedLibrary - Xamarin.Interface
+* XamarinSharedLibrary - XSL_DotNetStandardUtility
+* XamarinSharedLibrary - XSL_Interface
 
 # その他
 Mono.Androidがリンクされている必要がある

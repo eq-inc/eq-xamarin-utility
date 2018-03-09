@@ -139,8 +139,14 @@ namespace Eq.Utility.Droid
 
             if(hashCode != 0)
             {
-                ret = mParamDic[hashCode];
-                mParamDic.Remove(hashCode);
+                if(mParamDic.TryGetValue(hashCode, out ret))
+                {
+                    mParamDic.Remove(hashCode);
+                }
+                else
+                {
+                    ret = null;
+                }
             }
 
             return ret;
