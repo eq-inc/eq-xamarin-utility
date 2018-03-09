@@ -6,7 +6,7 @@
     <SharedGUID>21e46119-5376-4e5b-b454-6f1251484b90</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>interface</Import_RootNamespace>
+    <Import_RootNamespace>XSL_Interface</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)src\Constant.cs" />

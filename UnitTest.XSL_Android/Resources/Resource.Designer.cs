@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("UnitTest.Xamarin.Android.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("UnitTest.XSL_Android.Resource", IsApplication=true)]
 
-namespace UnitTest.Xamarin.Android
+namespace UnitTest.XSL_Android
 {
 	
 	
@@ -26,29 +26,29 @@ namespace UnitTest.Xamarin.Android
 		
 		public static void UpdateIdValues()
 		{
-			global::Xamarin.Android.NUnitLite.Resource.Id.OptionHostName = global::UnitTest.Xamarin.Android.Resource.Id.OptionHostName;
-			global::Xamarin.Android.NUnitLite.Resource.Id.OptionPort = global::UnitTest.Xamarin.Android.Resource.Id.OptionPort;
-			global::Xamarin.Android.NUnitLite.Resource.Id.OptionRemoteServer = global::UnitTest.Xamarin.Android.Resource.Id.OptionRemoteServer;
-			global::Xamarin.Android.NUnitLite.Resource.Id.OptionsButton = global::UnitTest.Xamarin.Android.Resource.Id.OptionsButton;
-			global::Xamarin.Android.NUnitLite.Resource.Id.ResultFullName = global::UnitTest.Xamarin.Android.Resource.Id.ResultFullName;
-			global::Xamarin.Android.NUnitLite.Resource.Id.ResultMessage = global::UnitTest.Xamarin.Android.Resource.Id.ResultMessage;
-			global::Xamarin.Android.NUnitLite.Resource.Id.ResultResultState = global::UnitTest.Xamarin.Android.Resource.Id.ResultResultState;
-			global::Xamarin.Android.NUnitLite.Resource.Id.ResultRunSingleMethodTest = global::UnitTest.Xamarin.Android.Resource.Id.ResultRunSingleMethodTest;
-			global::Xamarin.Android.NUnitLite.Resource.Id.ResultStackTrace = global::UnitTest.Xamarin.Android.Resource.Id.ResultStackTrace;
-			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsFailed = global::UnitTest.Xamarin.Android.Resource.Id.ResultsFailed;
-			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsId = global::UnitTest.Xamarin.Android.Resource.Id.ResultsId;
-			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsIgnored = global::UnitTest.Xamarin.Android.Resource.Id.ResultsIgnored;
-			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsInconclusive = global::UnitTest.Xamarin.Android.Resource.Id.ResultsInconclusive;
-			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsMessage = global::UnitTest.Xamarin.Android.Resource.Id.ResultsMessage;
-			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsPassed = global::UnitTest.Xamarin.Android.Resource.Id.ResultsPassed;
-			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsResult = global::UnitTest.Xamarin.Android.Resource.Id.ResultsResult;
-			global::Xamarin.Android.NUnitLite.Resource.Id.RunTestsButton = global::UnitTest.Xamarin.Android.Resource.Id.RunTestsButton;
-			global::Xamarin.Android.NUnitLite.Resource.Id.TestSuiteListView = global::UnitTest.Xamarin.Android.Resource.Id.TestSuiteListView;
-			global::Xamarin.Android.NUnitLite.Resource.Layout.options = global::UnitTest.Xamarin.Android.Resource.Layout.options;
-			global::Xamarin.Android.NUnitLite.Resource.Layout.results = global::UnitTest.Xamarin.Android.Resource.Layout.results;
-			global::Xamarin.Android.NUnitLite.Resource.Layout.test_result = global::UnitTest.Xamarin.Android.Resource.Layout.test_result;
-			global::Xamarin.Android.NUnitLite.Resource.Layout.test_suite = global::UnitTest.Xamarin.Android.Resource.Layout.test_suite;
-			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::UnitTest.Xamarin.Android.Resource.Attribute.actionBarSize;
+			global::Xamarin.Android.NUnitLite.Resource.Id.OptionHostName = global::UnitTest.XSL_Android.Resource.Id.OptionHostName;
+			global::Xamarin.Android.NUnitLite.Resource.Id.OptionPort = global::UnitTest.XSL_Android.Resource.Id.OptionPort;
+			global::Xamarin.Android.NUnitLite.Resource.Id.OptionRemoteServer = global::UnitTest.XSL_Android.Resource.Id.OptionRemoteServer;
+			global::Xamarin.Android.NUnitLite.Resource.Id.OptionsButton = global::UnitTest.XSL_Android.Resource.Id.OptionsButton;
+			global::Xamarin.Android.NUnitLite.Resource.Id.ResultFullName = global::UnitTest.XSL_Android.Resource.Id.ResultFullName;
+			global::Xamarin.Android.NUnitLite.Resource.Id.ResultMessage = global::UnitTest.XSL_Android.Resource.Id.ResultMessage;
+			global::Xamarin.Android.NUnitLite.Resource.Id.ResultResultState = global::UnitTest.XSL_Android.Resource.Id.ResultResultState;
+			global::Xamarin.Android.NUnitLite.Resource.Id.ResultRunSingleMethodTest = global::UnitTest.XSL_Android.Resource.Id.ResultRunSingleMethodTest;
+			global::Xamarin.Android.NUnitLite.Resource.Id.ResultStackTrace = global::UnitTest.XSL_Android.Resource.Id.ResultStackTrace;
+			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsFailed = global::UnitTest.XSL_Android.Resource.Id.ResultsFailed;
+			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsId = global::UnitTest.XSL_Android.Resource.Id.ResultsId;
+			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsIgnored = global::UnitTest.XSL_Android.Resource.Id.ResultsIgnored;
+			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsInconclusive = global::UnitTest.XSL_Android.Resource.Id.ResultsInconclusive;
+			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsMessage = global::UnitTest.XSL_Android.Resource.Id.ResultsMessage;
+			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsPassed = global::UnitTest.XSL_Android.Resource.Id.ResultsPassed;
+			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsResult = global::UnitTest.XSL_Android.Resource.Id.ResultsResult;
+			global::Xamarin.Android.NUnitLite.Resource.Id.RunTestsButton = global::UnitTest.XSL_Android.Resource.Id.RunTestsButton;
+			global::Xamarin.Android.NUnitLite.Resource.Id.TestSuiteListView = global::UnitTest.XSL_Android.Resource.Id.TestSuiteListView;
+			global::Xamarin.Android.NUnitLite.Resource.Layout.options = global::UnitTest.XSL_Android.Resource.Layout.options;
+			global::Xamarin.Android.NUnitLite.Resource.Layout.results = global::UnitTest.XSL_Android.Resource.Layout.results;
+			global::Xamarin.Android.NUnitLite.Resource.Layout.test_result = global::UnitTest.XSL_Android.Resource.Layout.test_result;
+			global::Xamarin.Android.NUnitLite.Resource.Layout.test_suite = global::UnitTest.XSL_Android.Resource.Layout.test_suite;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::UnitTest.XSL_Android.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation

@@ -3,30 +3,30 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Xamarin.Android", "Android\Xamarin.Android.shproj", "{6A72575F-9457-445E-9D5E-9449590F7E45}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XSL_Android", "XSL_Android\XSL_Android.shproj", "{6A72575F-9457-445E-9D5E-9449590F7E45}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Xamarin.iOS", "iOS\Xamarin.iOS.shproj", "{451F8DA9-FA45-4A25-8306-B5782D6A99A1}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XSL_iOS", "XSL_iOS\XSL_iOS.shproj", "{451F8DA9-FA45-4A25-8306-B5782D6A99A1}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Xamarin.Interface", "interface\Xamarin.Interface.shproj", "{21E46119-5376-4E5B-B454-6F1251484B90}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XSL_Interface", "XSL_Interface\XSL_Interface.shproj", "{21E46119-5376-4E5B-B454-6F1251484B90}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DotNetStandardUtility", "DotNetStandardUtility\DotNetStandardUtility.shproj", "{A63142BF-9923-4FC5-BC1A-6AEF89D63EEC}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XSL_DotNetStandardUtility", "XSL_DotNetStandardUtility\XSL_DotNetStandardUtility.shproj", "{A63142BF-9923-4FC5-BC1A-6AEF89D63EEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest.Xamarin.Android", "UnitTest.Xamarin.Android\UnitTest.Xamarin.Android.csproj", "{24A68F4D-97C9-4652-AB84-B4988576128B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest.XSL_Android", "UnitTest.XSL_Android\UnitTest.XSL_Android.csproj", "{24A68F4D-97C9-4652-AB84-B4988576128B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest.Xamarin.iOS", "UnitTest.Xamarin.iOS\UnitTest.Xamarin.iOS.csproj", "{9ADC09A3-84AD-4E55-8DC6-19399C42DBA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest.XSL_iOS", "UnitTest.XSL_iOS\UnitTest.XSL_iOS.csproj", "{9ADC09A3-84AD-4E55-8DC6-19399C42DBA2}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		interface\interface.projitems*{21e46119-5376-4e5b-b454-6f1251484b90}*SharedItemsImports = 13
-		Android\Android.projitems*{24a68f4d-97c9-4652-ab84-b4988576128b}*SharedItemsImports = 4
-		DotNetStandardUtility\DotNetStandardUtility.projitems*{24a68f4d-97c9-4652-ab84-b4988576128b}*SharedItemsImports = 4
-		interface\interface.projitems*{24a68f4d-97c9-4652-ab84-b4988576128b}*SharedItemsImports = 4
-		iOS\iOS.projitems*{451f8da9-fa45-4a25-8306-b5782d6a99a1}*SharedItemsImports = 13
-		Android\Android.projitems*{6a72575f-9457-445e-9d5e-9449590f7e45}*SharedItemsImports = 13
-		DotNetStandardUtility\DotNetStandardUtility.projitems*{9adc09a3-84ad-4e55-8dc6-19399c42dba2}*SharedItemsImports = 4
-		interface\interface.projitems*{9adc09a3-84ad-4e55-8dc6-19399c42dba2}*SharedItemsImports = 4
-		iOS\iOS.projitems*{9adc09a3-84ad-4e55-8dc6-19399c42dba2}*SharedItemsImports = 4
-		DotNetStandardUtility\DotNetStandardUtility.projitems*{a63142bf-9923-4fc5-bc1a-6aef89d63eec}*SharedItemsImports = 13
+		XSL_Interface\XSL_Interface.projitems*{21e46119-5376-4e5b-b454-6f1251484b90}*SharedItemsImports = 13
+		XSL_Android\XSL_Android.projitems*{24a68f4d-97c9-4652-ab84-b4988576128b}*SharedItemsImports = 4
+		XSL_DotNetStandardUtility\XSL_DotNetStandardUtility.projitems*{24a68f4d-97c9-4652-ab84-b4988576128b}*SharedItemsImports = 4
+		XSL_Interface\XSL_Interface.projitems*{24a68f4d-97c9-4652-ab84-b4988576128b}*SharedItemsImports = 4
+		XSL_iOS\XSL_iOS.projitems*{451f8da9-fa45-4a25-8306-b5782d6a99a1}*SharedItemsImports = 13
+		XSL_Android\XSL_Android.projitems*{6a72575f-9457-445e-9d5e-9449590f7e45}*SharedItemsImports = 13
+		XSL_DotNetStandardUtility\XSL_DotNetStandardUtility.projitems*{9adc09a3-84ad-4e55-8dc6-19399c42dba2}*SharedItemsImports = 4
+		XSL_Interface\XSL_Interface.projitems*{9adc09a3-84ad-4e55-8dc6-19399c42dba2}*SharedItemsImports = 4
+		XSL_iOS\XSL_iOS.projitems*{9adc09a3-84ad-4e55-8dc6-19399c42dba2}*SharedItemsImports = 4
+		XSL_DotNetStandardUtility\XSL_DotNetStandardUtility.projitems*{a63142bf-9923-4fc5-bc1a-6aef89d63eec}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

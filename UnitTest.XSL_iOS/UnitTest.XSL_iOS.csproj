@@ -7,9 +7,9 @@
     <ProjectGuid>{9ADC09A3-84AD-4E55-8DC6-19399C42DBA2}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>UnitTest.Xamarin.iOS</RootNamespace>
+    <RootNamespace>UnitTest.XSL_iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>UnitTest.Xamarin.iOS</AssemblyName>
+    <AssemblyName>UnitTest.XSL_iOS</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -103,9 +103,9 @@
     </Reference>
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
-  <Import Project="..\iOS\iOS.projitems" Label="Shared" />
-  <Import Project="..\interface\interface.projitems" Label="Shared" />
-  <Import Project="..\DotNetStandardUtility\DotNetStandardUtility.projitems" Label="Shared" />
+  <Import Project="..\XSL_iOS\XSL_iOS.projitems" Label="Shared" />
+  <Import Project="..\XSL_Interface\XSL_Interface.projitems" Label="Shared" />
+  <Import Project="..\XSL_DotNetStandardUtility\XSL_DotNetStandardUtility.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -3,14 +3,14 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>451f8da9-fa45-4a25-8306-b5782d6a99a1</SharedGUID>
+    <SharedGUID>a63142bf-9923-4fc5-bc1a-6aef89d63eec</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>iOS</Import_RootNamespace>
+    <Import_RootNamespace>XSL_DotNetStandardUtility</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)src\Localize.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)src\MediaPlayer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)src\ThreadUtil.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)src\Common.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)src\LogController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)src\PreferenceUtil.cs" />
   </ItemGroup>
 </Project>
