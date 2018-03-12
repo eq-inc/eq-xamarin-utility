@@ -41,7 +41,7 @@ namespace Eq.Utility
 
         public static void Log(System.Int64 category, params object[] contents)
         {
-            sLogController.CategoryLog(category, contents);
+            sLogController.InnerCategoryLog(category, 1, contents);
         }
 
         private System.Int64 mOutputLogCategories = LogCategoryNone;
@@ -106,10 +106,15 @@ namespace Eq.Utility
 
         public void CategoryLog(System.Int64 category, params object[] contents)
         {
+            InnerCategoryLog(category, 0, contents);
+        }
+
+        private void InnerCategoryLog(System.Int64 category, int indent, params object[] contents)
+        {
             if (category == LogCategoryMethodError)
             {
                 StringBuilder contentBuilder = new StringBuilder();
-                StackFrame lastStackFrame = new StackTrace(true).GetFrame(1);
+                StackFrame lastStackFrame = new StackTrace(true).GetFrame(indent + 1);
 
                 if (!string.IsNullOrEmpty(mLogTag))
                 {
@@ -142,7 +147,7 @@ namespace Eq.Utility
                     case LogCategoryMethodOut:
                         {
                             StringBuilder contentBuilder = new StringBuilder();
-                            StackFrame lastStackFrame = new StackTrace(true).GetFrame(1);
+                            StackFrame lastStackFrame = new StackTrace(true).GetFrame(indent + 1);
                             if (!string.IsNullOrEmpty(mLogTag))
                             {
                                 contentBuilder.Append(mLogTag).Append(": ");
@@ -173,7 +178,7 @@ namespace Eq.Utility
                     case LogCategoryMethodTrace:
                         {
                             StringBuilder contentBuilder = new StringBuilder();
-                            StackFrame lastStackFrame = new StackTrace(true).GetFrame(1);
+                            StackFrame lastStackFrame = new StackTrace(true).GetFrame(indent + 1);
 
                             if (!string.IsNullOrEmpty(mLogTag))
                             {

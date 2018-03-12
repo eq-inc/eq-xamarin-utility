@@ -15,5 +15,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)src\IProximitySensor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\IThreadUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\AbstractTranslateExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)src\PageNavigator.cs" />
   </ItemGroup>
 </Project>
