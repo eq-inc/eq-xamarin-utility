@@ -68,10 +68,13 @@ namespace Eq.Utility
                         {
                             lock (mRequestQueue)
                             {
-                                Request workRequest = null;
-                                if (mRequestQueue.TryDequeue(out workRequest))
+                                try
                                 {
-                                    mHandler(workRequest);
+                                    mHandler(mRequestQueue.Dequeue());
+                                }
+                                catch (InvalidOperationException)
+                                {
+
                                 }
                             }
                         });
@@ -122,10 +125,13 @@ namespace Eq.Utility
                         {
                             lock (mRequestQueue)
                             {
-                                Request workRequest = null;
-                                if (mRequestQueue.TryDequeue(out workRequest))
+                                try
                                 {
-                                    mHandler(workRequest);
+                                    mHandler(mRequestQueue.Dequeue());
+                                }
+                                catch (InvalidOperationException)
+                                {
+
                                 }
                             }
                         }, delayMillis);
