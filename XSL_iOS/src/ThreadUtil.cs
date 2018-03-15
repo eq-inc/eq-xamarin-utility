@@ -10,6 +10,11 @@ namespace Eq.Utility.iOS
     {
         private static readonly string TAG = typeof(ThreadUtil_iOS).Name;
 
+        public bool IsMainThread()
+        {
+            return NSThread.Current.IsMainThread;
+        }
+
         public void RunOnMainThread(CsRunnable runnable)
         {
             NSOperationQueue.MainQueue.AddOperation(delegate ()

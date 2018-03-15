@@ -7,6 +7,12 @@ namespace Eq.Utility.Droid
     public class ThreadUtil_Android : IThreadUtil
     {
         private static readonly string TAG = typeof(ThreadUtil_Android).Name;
+
+        public bool IsMainThread()
+        {
+            return Java.Lang.Thread.CurrentThread().Equals(Looper.MainLooper.Thread);
+        }
+
         public void RunOnMainThread(CsRunnable runnable)
         {
             new Handler(Looper.MainLooper).Post(new LocalRunnable(runnable, 0));

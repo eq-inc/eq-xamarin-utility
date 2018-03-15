@@ -106,6 +106,7 @@
   <Import Project="..\XSL_iOS\XSL_iOS.projitems" Label="Shared" />
   <Import Project="..\XSL_Interface\XSL_Interface.projitems" Label="Shared" />
   <Import Project="..\XSL_DotNetStandardUtility\XSL_DotNetStandardUtility.projitems" Label="Shared" />
+  <Import Project="..\UnitTest.XSL\UnitTest.XSL.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

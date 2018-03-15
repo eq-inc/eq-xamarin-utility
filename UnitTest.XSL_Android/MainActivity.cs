@@ -10,6 +10,8 @@ namespace UnitTest.Xamarin.Android
     {
         protected override void OnCreate(Bundle bundle)
         {
+            global::Xamarin.Forms.Forms.Init(this, bundle);
+
             // tests can be inside the main assembly
             AddTest(Assembly.GetExecutingAssembly());
             // or in any reference assemblies

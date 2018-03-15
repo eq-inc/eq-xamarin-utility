@@ -1,4 +1,5 @@
 ﻿using Android.OS;
+using System;
 using System.Collections.Generic;
 
 namespace Eq.Utility.Droid
@@ -48,9 +49,12 @@ namespace Eq.Utility.Droid
         {
             int hashCode = csObject == null ? 0 : csObject.GetHashCode();
 
-            if(hashCode != 0)
+            if (hashCode != 0)
             {
-                mParamDic[hashCode] = csObject;
+                lock (mParamDic)
+                {
+                    mParamDic[hashCode] = csObject;
+                }
             }
 
             return mHandler.ObtainMessage(what, arg1, arg2, new Java.Lang.Long(hashCode));
@@ -137,16 +141,29 @@ namespace Eq.Utility.Droid
             Java.Lang.Object jObject = message.Obj;
             long hashCode = (jObject != null) ? ((Java.Lang.Long)jObject).LongValue() : 0L;
 
-            if(hashCode != 0)
+            try
             {
-                if(mParamDic.TryGetValue(hashCode, out ret))
+                LogController.Log(LogController.LogCategoryMethodTrace, "hash code=" + hashCode);
+                if (hashCode != 0)
                 {
-                    mParamDic.Remove(hashCode);
+                    lock (mParamDic)
+                    {
+                        if (!mParamDic.Remove(hashCode, out ret))
+                        {
+                            LogController.Log(LogController.LogCategoryMethodTrace, "not found object");
+                            foreach(KeyValuePair<long, object> kvPair in mParamDic)
+                            {
+                                LogController.Log(LogController.LogCategoryMethodTrace, "left key=" + kvPair.Key);
+                                LogController.Log(LogController.LogCategoryMethodTrace, "left value=" + kvPair.Value);
+                            }
+                            ret = null;
+                        }
+                    }
                 }
-                else
-                {
-                    ret = null;
-                }
+            }
+            catch (Exception e)
+            {
+                LogController.Log(LogController.LogCategoryMethodError, e);
             }
 
             return ret;

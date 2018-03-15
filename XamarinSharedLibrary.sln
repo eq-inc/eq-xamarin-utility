@@ -15,14 +15,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest.XSL_Android", "Uni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest.XSL_iOS", "UnitTest.XSL_iOS\UnitTest.XSL_iOS.csproj", "{9ADC09A3-84AD-4E55-8DC6-19399C42DBA2}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UnitTest.XSL", "UnitTest.XSL\UnitTest.XSL.shproj", "{3B6F0A31-5143-42C2-8E64-5202692BCFE2}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		XSL_Interface\XSL_Interface.projitems*{21e46119-5376-4e5b-b454-6f1251484b90}*SharedItemsImports = 13
+		UnitTest.XSL\UnitTest.XSL.projitems*{24a68f4d-97c9-4652-ab84-b4988576128b}*SharedItemsImports = 4
 		XSL_Android\XSL_Android.projitems*{24a68f4d-97c9-4652-ab84-b4988576128b}*SharedItemsImports = 4
 		XSL_DotNetStandardUtility\XSL_DotNetStandardUtility.projitems*{24a68f4d-97c9-4652-ab84-b4988576128b}*SharedItemsImports = 4
 		XSL_Interface\XSL_Interface.projitems*{24a68f4d-97c9-4652-ab84-b4988576128b}*SharedItemsImports = 4
+		UnitTest.XSL\UnitTest.XSL.projitems*{3b6f0a31-5143-42c2-8e64-5202692bcfe2}*SharedItemsImports = 13
 		XSL_iOS\XSL_iOS.projitems*{451f8da9-fa45-4a25-8306-b5782d6a99a1}*SharedItemsImports = 13
 		XSL_Android\XSL_Android.projitems*{6a72575f-9457-445e-9d5e-9449590f7e45}*SharedItemsImports = 13
+		UnitTest.XSL\UnitTest.XSL.projitems*{9adc09a3-84ad-4e55-8dc6-19399c42dba2}*SharedItemsImports = 4
 		XSL_DotNetStandardUtility\XSL_DotNetStandardUtility.projitems*{9adc09a3-84ad-4e55-8dc6-19399c42dba2}*SharedItemsImports = 4
 		XSL_Interface\XSL_Interface.projitems*{9adc09a3-84ad-4e55-8dc6-19399c42dba2}*SharedItemsImports = 4
 		XSL_iOS\XSL_iOS.projitems*{9adc09a3-84ad-4e55-8dc6-19399c42dba2}*SharedItemsImports = 4

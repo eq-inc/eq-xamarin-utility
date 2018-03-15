@@ -5,6 +5,8 @@
 
     public interface IThreadUtil
     {
+        bool IsMainThread();
+
         void RunOnMainThread(CsRunnable runnable);
 
         void RunOnMainThread(CsRunnableWithParam runnable, params object[] paramArray);

@@ -1,13 +1,11 @@
-﻿using Android.OS;
-using Eq.Utility;
-using Eq.Utility.Droid;
-using Java.Lang;
+﻿using Eq.Utility;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
+using Xamarin.Forms;
 
-
-namespace UnitTest.Xamarin.Android
+namespace UnitTest.Xamarin
 {
     [TestFixture]
     public class TestUtility
@@ -83,12 +81,12 @@ namespace UnitTest.Xamarin.Android
         public void ThreadUtilTest()
         {
             long currentTime1MS = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            IThreadUtil threadUtil = new ThreadUtil_Android();
+            IThreadUtil threadUtil = DependencyService.Get<IThreadUtil>();
             threadUtil.RunOnWorkThreadDelayed(delegate ()
             {
                 long timeoutMS = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
-                if (Looper.MainLooper.Thread.Equals(Thread.CurrentThread()))
+                if (threadUtil.IsMainThread())
                 {
                     Assert.Fail();
                 }
@@ -104,7 +102,7 @@ namespace UnitTest.Xamarin.Android
             {
                 long timeoutMS = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
-                if (Looper.MainLooper.Thread.Equals(Thread.CurrentThread()))
+                if (threadUtil.IsMainThread())
                 {
                     Assert.Fail();
                 }
@@ -117,7 +115,7 @@ namespace UnitTest.Xamarin.Android
 
             threadUtil.RunOnWorkThread(delegate ()
             {
-                if (Looper.MainLooper.Thread.Equals(Thread.CurrentThread()))
+                if (threadUtil.IsMainThread())
                 {
                     Assert.Fail();
                 }
@@ -125,7 +123,7 @@ namespace UnitTest.Xamarin.Android
 
             threadUtil.RunOnWorkThread(delegate (object[] paramArray)
             {
-                if (Looper.MainLooper.Thread.Equals(Thread.CurrentThread()))
+                if (threadUtil.IsMainThread())
                 {
                     Assert.Fail();
                 }
@@ -154,7 +152,7 @@ namespace UnitTest.Xamarin.Android
 
             threadUtil.RunOnMainThread(delegate ()
             {
-                if (!Looper.MainLooper.Thread.Equals(Thread.CurrentThread()))
+                if (!threadUtil.IsMainThread())
                 {
                     Assert.Fail();
                 }
@@ -162,7 +160,7 @@ namespace UnitTest.Xamarin.Android
 
             threadUtil.RunOnMainThread(delegate (object[] paramArray)
             {
-                if (!Looper.MainLooper.Thread.Equals(Thread.CurrentThread()))
+                if (!threadUtil.IsMainThread())
                 {
                     Assert.Fail();
                 }
@@ -194,7 +192,7 @@ namespace UnitTest.Xamarin.Android
             {
                 long timeoutMS = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
-                if (!Looper.MainLooper.Thread.Equals(Thread.CurrentThread()))
+                if (!threadUtil.IsMainThread())
                 {
                     Assert.Fail();
                 }
@@ -210,7 +208,7 @@ namespace UnitTest.Xamarin.Android
             {
                 long timeoutMS = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
-                if (!Looper.MainLooper.Thread.Equals(Thread.CurrentThread()))
+                if (!threadUtil.IsMainThread())
                 {
                     Assert.Fail();
                 }
@@ -220,6 +218,117 @@ namespace UnitTest.Xamarin.Android
                     Assert.Fail("expected timeout  = " + (currentTime4MS + DelayTimeMS) + ", real timeout = " + timeoutMS);
                 }
             }, DelayTimeMS, null);
+        }
+
+        [Test]
+        public void RequestWorkerTest()
+        {
+            LogController.GlobalOutputLogCategory = LogController.LogCategoryAll;
+
+            List<int> whatList1 = new List<int>();
+            IThreadUtil threadUtil = DependencyService.Get<IThreadUtil>();
+            IRequestWorker requestWorker1 = DependencyService.Get<IRequestWorkerBuilder>().Create(delegate (Request request)
+            {
+                int targetWhat = whatList1[0];
+
+                if(targetWhat != request.what)
+                {
+                    Assert.Fail("order illegal");
+                }
+                if (!threadUtil.IsMainThread())
+                {
+                    Assert.Fail("not work on main thread");
+                }
+                if((request.arg1 != 10) || (request.arg2 != 10) || !request.obj.Equals(whatList1))
+                {
+                    Assert.Fail("paramters are not enough");
+                }
+
+                whatList1.RemoveAt(0);
+            });
+            for(int i=0; i<10; i++)
+            {
+                whatList1.Add(i);
+                requestWorker1.SendRequest(i, 10, 10, whatList1);
+            }
+
+            List<int> whatList2 = new List<int>();
+            IRequestWorker requestWorker2 = DependencyService.Get<IRequestWorkerBuilder>().Create(delegate (Request request)
+            {
+                int targetWhat = whatList2[0];
+
+                if (targetWhat != request.what)
+                {
+                    Assert.Fail("order illegal");
+                }
+                if (threadUtil.IsMainThread())
+                {
+                    Assert.Fail("not work on work thread");
+                }
+                if ((request.arg1 != 10) || (request.arg2 != 10) || !request.obj.Equals(whatList2))
+                {
+                    Assert.Fail("paramters are not enough");
+                }
+
+                whatList2.RemoveAt(0);
+            }, ThreadType.Work);
+            for (int i = 0; i < 10; i++)
+            {
+                whatList2.Add(i);
+                requestWorker2.SendRequest(i, 10, 10, whatList2);
+            }
+
+            List<int> whatList3 = new List<int>();
+            IRequestWorker requestWorker3 = DependencyService.Get<IRequestWorkerBuilder>().Create(delegate (Request request)
+            {
+                int targetWhat = whatList3[0];
+
+                if (targetWhat != request.what)
+                {
+                    Assert.Fail("order illegal");
+                }
+                if (!threadUtil.IsMainThread())
+                {
+                    Assert.Fail("not work on main thread");
+                }
+                if ((request.arg1 != 10) || (request.arg2 != 10) || !request.obj.Equals(whatList3))
+                {
+                    Assert.Fail("paramters are not enough");
+                }
+
+                whatList3.RemoveAt(0);
+            });
+            for (int i = 0; i < 10; i++)
+            {
+                whatList3.Add(i);
+                requestWorker3.SendRequestDelayed(i, 10, 10, whatList3, 1000);
+            }
+
+            List<int> whatList4 = new List<int>();
+            IRequestWorker requestWorker4 = DependencyService.Get<IRequestWorkerBuilder>().Create(delegate (Request request)
+            {
+                int targetWhat = whatList4[0];
+
+                if (targetWhat != request.what)
+                {
+                    Assert.Fail("order illegal");
+                }
+                if (threadUtil.IsMainThread())
+                {
+                    Assert.Fail("not work on work thread");
+                }
+                if ((request.arg1 != 10) || (request.arg2 != 10) || !request.obj.Equals(whatList4))
+                {
+                    Assert.Fail("paramters are not enough");
+                }
+
+                whatList4.RemoveAt(0);
+            }, ThreadType.Work);
+            for (int i = 0; i < 10; i++)
+            {
+                whatList4.Add(i);
+                requestWorker4.SendRequestDelayed(i, 10, 10, whatList4, 1000);
+            }
         }
 
         private class Dummy
