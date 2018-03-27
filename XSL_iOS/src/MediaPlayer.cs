@@ -2,6 +2,7 @@
 using Eq.Utility;
 using Foundation;
 using System;
+using System.IO;
 using Twilio_ProgrammableVideo.iOS;
 using UIKit;
 using Xamarin.Forms;
@@ -43,20 +44,28 @@ namespace Twilio_ProgrammableVideo.iOS
 
             if (extStartDotIndex > 0)
             {
-                string fileName = assetName.Substring(0, extStartDotIndex);
-                string extName = assetName.Substring(extStartDotIndex);
+                //string fileName = Path.GetFileNameWithoutExtension(assetName);
+                //string extName = Path.GetExtension(assetName);
 
-                NSDataAsset assetData = new NSDataAsset(fileName);
+                //NSDataAsset assetData = new NSDataAsset(fileName);
+                //NSError error = null;
+
+                //if (assetData != null)
+                //{
+                //    AVAudioSession.SharedInstance().SetCategory(AVAudioSessionCategory.Playback);
+                //    AVAudioSession.SharedInstance().SetActive(true);
+                //    mAudioPlayer = new AVAudioPlayer(assetData.Data, extName, out error);
+                //    SetLooping(mLoop);
+                //    SetVolume(mLeftVolume, mRightVolume);
+                //}
+
+                string extName = Path.GetExtension(assetName);
                 NSError error = null;
-
-                if (assetData != null)
-                {
-                    AVAudioSession.SharedInstance().SetCategory(AVAudioSessionCategory.Playback);
-                    AVAudioSession.SharedInstance().SetActive(true);
-                    mAudioPlayer = new AVAudioPlayer(assetData.Data, extName, out error);
-                    SetLooping(mLoop);
-                    SetVolume(mLeftVolume, mRightVolume);
-                }
+                AVAudioSession.SharedInstance().SetCategory(AVAudioSessionCategory.Playback);
+                AVAudioSession.SharedInstance().SetActive(true);
+                mAudioPlayer = new AVAudioPlayer(new NSUrl(assetName), extName, out error);
+                SetLooping(mLoop);
+                SetVolume(mLeftVolume, mRightVolume);
 
                 result = error == null;
 

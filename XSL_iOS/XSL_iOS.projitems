@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)src\Localize.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\MediaPlayer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)src\ProximitySensorHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\RequestWorker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\ThreadUtil.cs" />
   </ItemGroup>
