@@ -9,6 +9,7 @@
     <Import_RootNamespace>XSL_Android</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)src\DeviceAccessHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\ExtHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\ListenerDelegation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\Localize.cs" />

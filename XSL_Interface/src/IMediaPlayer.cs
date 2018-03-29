@@ -2,6 +2,11 @@
 {
     public delegate void HandlePrepare(string url, bool prepared);
 
+    public interface IMediaPlayerHelper
+    {
+        IMediaPlayer Create();
+    }
+
     public interface IMediaPlayer
     {
         void SetAudioStreamType(AudioStreamType streamType);

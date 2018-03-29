@@ -3,9 +3,17 @@ using System;
 using Xamarin.Forms;
 using Eq.Utility.Droid;
 
-[assembly: Dependency(typeof(MediaPlayer_Android))]
+[assembly: Dependency(typeof(MediaPlayerHelper_Android))]
 namespace Eq.Utility.Droid
 {
+    public class MediaPlayerHelper_Android : IMediaPlayerHelper
+    {
+        public IMediaPlayer Create()
+        {
+            return new MediaPlayer_Android();
+        }
+    }
+
     public class MediaPlayer_Android : IMediaPlayer
     {
         private Android.Media.MediaPlayer mMediaPlayer;

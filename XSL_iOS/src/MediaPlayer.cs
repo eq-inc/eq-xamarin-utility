@@ -7,9 +7,17 @@ using Twilio_ProgrammableVideo.iOS;
 using UIKit;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(MediaPlayer_iOS))]
+[assembly: Dependency(typeof(MediaPlayerHelper_iOS))]
 namespace Twilio_ProgrammableVideo.iOS
 {
+    public class MediaPlayerHelper_iOS : IMediaPlayerHelper
+    {
+        public IMediaPlayer Create()
+        {
+            return new MediaPlayer_iOS();
+        }
+    }
+
     public class MediaPlayer_iOS : IMediaPlayer
     {
         private AVAudioPlayer mAudioPlayer;

@@ -9,6 +9,7 @@
     <Import_RootNamespace>XSL_iOS</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)src\DeviceAccessHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\Localize.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\MediaPlayer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\ProximitySensorHelper.cs" />

@@ -30,7 +30,7 @@ namespace XSL_Android
 
         public class ViewClickListener : BaseListener, View.IOnClickListener
         {
-            public delegate void OnClickDelegate(object owner, View view);
+            public delegate void OnClickDelegate(View view);
 
             private OnClickDelegate mDelegator;
 
@@ -41,13 +41,13 @@ namespace XSL_Android
 
             public void OnClick(View v)
             {
-                mDelegator(mOwner, v);
+                mDelegator(v);
             }
         }
 
         public class ViewTouchListener : BaseListener, View.IOnTouchListener
         {
-            public delegate bool OnTouchDelegate(object owner, View v, MotionEvent e);
+            public delegate bool OnTouchDelegate(View v, MotionEvent e);
 
             private OnTouchDelegate mDelegator;
 
@@ -58,13 +58,13 @@ namespace XSL_Android
 
             public bool OnTouch(View v, MotionEvent e)
             {
-                return mDelegator(mOwner, v, e);
+                return mDelegator(v, e);
             }
         }
 
         public class CompoundButtonCheckedChangeListener : BaseListener, CompoundButton.IOnCheckedChangeListener
         {
-            public delegate void OnCheckedChangeDelegate(object owner, CompoundButton buttonView, bool isChecked);
+            public delegate void OnCheckedChangeDelegate(CompoundButton buttonView, bool isChecked);
 
             private OnCheckedChangeDelegate mDelegator;
 
@@ -75,7 +75,7 @@ namespace XSL_Android
 
             public void OnCheckedChanged(CompoundButton buttonView, bool isChecked)
             {
-                mDelegator(mOwner, buttonView, isChecked);
+                mDelegator(buttonView, isChecked);
             }
         }
     }
