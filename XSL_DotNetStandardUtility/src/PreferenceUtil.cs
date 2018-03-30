@@ -88,6 +88,10 @@ namespace Eq.Utility
                 {
                     // 処理なし
                 }
+                catch (JsonReaderException)
+                {
+                    // 処理なし
+                }
                 finally
                 {
                     if (sCachedDictionary == null)
