@@ -1,7 +1,6 @@
 ﻿using CoreFoundation;
 using Eq.Utility.iOS;
 using Foundation;
-using System;
 
 [assembly: Xamarin.Forms.Dependency(typeof(ThreadUtil_iOS))]
 namespace Eq.Utility.iOS
@@ -9,6 +8,7 @@ namespace Eq.Utility.iOS
     public class ThreadUtil_iOS : IThreadUtil
     {
         private static readonly string TAG = typeof(ThreadUtil_iOS).Name;
+        private const long MILLI_TO_NANO = 1000000;
 
         public bool IsMainThread()
         {
@@ -33,7 +33,7 @@ namespace Eq.Utility.iOS
 
         public void RunOnMainThreadDelayed(CsRunnable runnable, long delayMillis)
         {
-            DispatchQueue.MainQueue.DispatchAfter(new DispatchTime(((ulong)(DateTimeOffset.Now.ToUnixTimeMilliseconds() + delayMillis)) * 1000000), delegate ()
+            DispatchQueue.MainQueue.DispatchAfter(new DispatchTime(DispatchTime.Now, delayMillis * MILLI_TO_NANO), delegate ()
             {
                 runnable();
             });
@@ -41,7 +41,7 @@ namespace Eq.Utility.iOS
 
         public void RunOnMainThreadDelayed(CsRunnableWithParam runnable, long delayMillis, params object[] paramArray)
         {
-            DispatchQueue.MainQueue.DispatchAfter(new DispatchTime(((ulong)(DateTimeOffset.Now.ToUnixTimeMilliseconds() + delayMillis)) * 1000000), delegate ()
+            DispatchQueue.MainQueue.DispatchAfter(new DispatchTime(DispatchTime.Now, delayMillis * MILLI_TO_NANO), delegate ()
             {
                 runnable(paramArray);
             });
@@ -63,7 +63,7 @@ namespace Eq.Utility.iOS
 
         public void RunOnWorkThreadDelayed(CsRunnable runnable, long delayMillis)
         {
-            DispatchQueue.DefaultGlobalQueue.DispatchAfter(new DispatchTime(((ulong)(DateTimeOffset.Now.ToUnixTimeMilliseconds() + delayMillis)) * 1000000), delegate()
+            DispatchQueue.DefaultGlobalQueue.DispatchAfter(new DispatchTime(DispatchTime.Now, delayMillis * MILLI_TO_NANO), delegate()
             {
                 runnable();
             });
@@ -71,7 +71,7 @@ namespace Eq.Utility.iOS
 
         public void RunOnWorkThreadDelayed(CsRunnableWithParam runnable, long delayMillis, params object[] paramArray)
         {
-            DispatchQueue.DefaultGlobalQueue.DispatchAfter(new DispatchTime(((ulong)(DateTimeOffset.Now.ToUnixTimeMilliseconds() + delayMillis)) * 1000000), delegate ()
+            DispatchQueue.DefaultGlobalQueue.DispatchAfter(new DispatchTime(DispatchTime.Now, delayMillis * MILLI_TO_NANO), delegate ()
             {
                 runnable(paramArray);
             });
