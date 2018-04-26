@@ -60,6 +60,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="Xamarin.Android.NUnitLite" />
     <Reference Include="Xamarin.Android.Support.Animated.Vector.Drawable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -141,6 +142,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Android_Utility\XamarinBinding\XamarinBinding\XamarinBinding.csproj">
+      <Project>{8f0218c7-7d75-497a-98b2-b030f053f40f}</Project>
+      <Name>XamarinBinding</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\XSL_Android\XSL_Android.projitems" Label="Shared" />
   <Import Project="..\XSL_DotNetStandardUtility\XSL_DotNetStandardUtility.projitems" Label="Shared" />

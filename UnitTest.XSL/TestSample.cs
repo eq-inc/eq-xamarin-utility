@@ -82,6 +82,7 @@ namespace UnitTest.Xamarin
         {
             long currentTime1MS = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             IThreadUtil threadUtil = DependencyService.Get<IThreadUtil>();
+
             threadUtil.RunOnWorkThreadDelayed(delegate ()
             {
                 long timeoutMS = DateTimeOffset.Now.ToUnixTimeMilliseconds();
@@ -331,9 +332,111 @@ namespace UnitTest.Xamarin
             }
         }
 
+        [Test]
+        public void JsonConvertTest()
+        {
+            RequestParam requestParam = new RequestParam();
+            Dictionary<string, object> jsonInstance = new Dictionary<string, object>();
+            jsonInstance["param1"] = "value1";
+            jsonInstance["param2"] = 2;
+            jsonInstance["param3"] = requestParam;
+            requestParam.param1 = "2-1";
+            requestParam.param2 = 22;
+            requestParam.param3 = new string[] { "3-3-0", "3-3-1", "3-3-2", "3-3-3", "3-3-4", "3-3-5", "3-3-6", "3-3-7", "3-3-8", "3-3-9" };
+            requestParam.param4 = new int[] { 330, 331, 332, 333, 334, 335, 336, 337, 338, 339 };
+
+            string jsonInstanceStr = Newtonsoft.Json.JsonConvert.SerializeObject(jsonInstance);
+            Assert.True(jsonInstanceStr.Contains("\"param1\""));
+            Assert.True(jsonInstanceStr.Contains("\"value1\""));
+            Assert.True(jsonInstanceStr.Contains("\"param2\""));
+            Assert.True(jsonInstanceStr.Contains("2"));
+            Assert.True(jsonInstanceStr.Contains("\"param3\""));
+            Assert.True(jsonInstanceStr.Contains("\"2-1\""));
+            Assert.True(jsonInstanceStr.Contains("22"));
+            Assert.True(jsonInstanceStr.Contains("\"3-3-0\""));
+            Assert.True(jsonInstanceStr.Contains("\"3-3-1\""));
+            Assert.True(jsonInstanceStr.Contains("\"3-3-2\""));
+            Assert.True(jsonInstanceStr.Contains("\"3-3-3\""));
+            Assert.True(jsonInstanceStr.Contains("\"3-3-4\""));
+            Assert.True(jsonInstanceStr.Contains("\"3-3-5\""));
+            Assert.True(jsonInstanceStr.Contains("\"3-3-6\""));
+            Assert.True(jsonInstanceStr.Contains("\"3-3-7\""));
+            Assert.True(jsonInstanceStr.Contains("\"3-3-8\""));
+            Assert.True(jsonInstanceStr.Contains("\"3-3-9\""));
+
+            Assert.True(jsonInstanceStr.Contains("330"));
+            Assert.True(jsonInstanceStr.Contains("331"));
+            Assert.True(jsonInstanceStr.Contains("332"));
+            Assert.True(jsonInstanceStr.Contains("333"));
+            Assert.True(jsonInstanceStr.Contains("334"));
+            Assert.True(jsonInstanceStr.Contains("335"));
+            Assert.True(jsonInstanceStr.Contains("336"));
+            Assert.True(jsonInstanceStr.Contains("337"));
+            Assert.True(jsonInstanceStr.Contains("338"));
+            Assert.True(jsonInstanceStr.Contains("339"));
+        }
+
+        [Test]
+        public async void ApiAccessHelperTest()
+        {
+            RequestToken requestToken = new RequestToken();
+            ApiAccessHelper<RequestToken, ResponseToken> apiAccessHelper = new ApiAccessHelper<RequestToken, ResponseToken>();
+            apiAccessHelper.Method = ApiAccessHelper<RequestToken, ResponseToken>.MethodType.Post;
+            apiAccessHelper.Url = "http://api.zipaddress.net/?zipcode=2700023";
+            apiAccessHelper.RequestEntity = requestToken;
+
+            ResponseToken response = await apiAccessHelper.ExecuteAsync();
+            Assert.NotNull(response);
+            Assert.NotNull(response.data);
+        }
+
+        [Test]
+        public void ApiAccessHelperTest2()
+        {
+            ApiAccessHelper<RequestToken, ResponseToken> apiAccessHelper = new ApiAccessHelper<RequestToken, ResponseToken>();
+            apiAccessHelper.Method = ApiAccessHelper<RequestToken, ResponseToken>.MethodType.Post;
+            apiAccessHelper.Url = "http://api.zipaddress.net/?zipcode=2700023";
+
+            ResponseToken response = apiAccessHelper.Execute();
+            Assert.NotNull(response);
+            Assert.NotNull(response.data);
+        }
+
         private class Dummy
         {
             string dummy;
+        }
+
+        public class RequestToken
+        {
+            public string param1;
+            public int param2;
+            public RequestParam param3;
+            public string[] param4;
+            public int[] param5;
+        }
+
+        public class RequestParam
+        {
+            public string param1;
+            public int param2;
+            public string[] param3;
+            public int[] param4;
+        }
+
+        public class ResponseToken
+        {
+            public int code;
+            public ResponseParam data;
+        }
+
+        public class ResponseParam
+        {
+            public string pref;
+            public string address;
+            public string city;
+            public string town;
+            public string fullAddress;
         }
     }
 }

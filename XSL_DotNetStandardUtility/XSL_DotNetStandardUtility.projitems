@@ -9,6 +9,7 @@
     <Import_RootNamespace>XSL_DotNetStandardUtility</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)src\ApiAccessHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\Common.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\LogController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\PreferenceUtil.cs" />

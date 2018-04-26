@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest.XSL_iOS", "UnitTes
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UnitTest.XSL", "UnitTest.XSL\UnitTest.XSL.shproj", "{3B6F0A31-5143-42C2-8E64-5202692BCFE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinBinding", "..\Android_Utility\XamarinBinding\XamarinBinding\XamarinBinding.csproj", "{8F0218C7-7D75-497A-98B2-B030F053F40F}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		XSL_Interface\XSL_Interface.projitems*{21e46119-5376-4e5b-b454-6f1251484b90}*SharedItemsImports = 13
@@ -70,6 +72,18 @@ Global
 		{9ADC09A3-84AD-4E55-8DC6-19399C42DBA2}.Release|iPhone.Build.0 = Release|iPhone
 		{9ADC09A3-84AD-4E55-8DC6-19399C42DBA2}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{9ADC09A3-84AD-4E55-8DC6-19399C42DBA2}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{8F0218C7-7D75-497A-98B2-B030F053F40F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F0218C7-7D75-497A-98B2-B030F053F40F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F0218C7-7D75-497A-98B2-B030F053F40F}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{8F0218C7-7D75-497A-98B2-B030F053F40F}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{8F0218C7-7D75-497A-98B2-B030F053F40F}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{8F0218C7-7D75-497A-98B2-B030F053F40F}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{8F0218C7-7D75-497A-98B2-B030F053F40F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F0218C7-7D75-497A-98B2-B030F053F40F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F0218C7-7D75-497A-98B2-B030F053F40F}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{8F0218C7-7D75-497A-98B2-B030F053F40F}.Release|iPhone.Build.0 = Release|Any CPU
+		{8F0218C7-7D75-497A-98B2-B030F053F40F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{8F0218C7-7D75-497A-98B2-B030F053F40F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
