@@ -51,7 +51,7 @@ namespace Eq.Utility
         {
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {
-                ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                ci = DependencyServiceManager.Instance.Get<ILocalize>().GetCurrentCultureInfo();
             }
         }
 

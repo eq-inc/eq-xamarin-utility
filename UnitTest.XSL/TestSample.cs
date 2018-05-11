@@ -1,4 +1,5 @@
 ﻿using Eq.Utility;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -377,6 +378,18 @@ namespace UnitTest.Xamarin
         }
 
         [Test]
+        public void JsonConvertTest2()
+        {
+            PropertyTest propertyTest = new PropertyTest();
+            propertyTest.SetProperty1("value is set");
+
+            string jsonInstanceStr = Newtonsoft.Json.JsonConvert.SerializeObject(propertyTest);
+            Assert.True(jsonInstanceStr.Contains("\"value is set\""));
+            Assert.True(jsonInstanceStr.Contains("\"params\""));
+            Assert.True(jsonInstanceStr.Contains("\"parameters value\""));
+        }
+
+        [Test]
         public async void ApiAccessHelperTest()
         {
             RequestToken requestToken = new RequestToken();
@@ -405,6 +418,19 @@ namespace UnitTest.Xamarin
         private class Dummy
         {
             string dummy;
+        }
+
+        public class PropertyTest
+        {
+            public string property1 { get; private set; }
+            public void SetProperty1(string value)
+            {
+                property1 = value;
+            }
+
+            [JsonProperty(PropertyName = "params")]
+            public string parameters = "parameters value";
+
         }
 
         public class RequestToken

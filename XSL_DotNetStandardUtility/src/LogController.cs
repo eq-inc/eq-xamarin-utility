@@ -9,6 +9,8 @@ namespace Eq.Utility
         public const System.Int64 LogCategoryMethodIn = 0x0000000000000001 << 1;
         public const System.Int64 LogCategoryMethodTrace = 0x0000000000000001 << 2;
         public const System.Int64 LogCategoryMethodOut = 0x0000000000000001 << 3;
+        public const System.Int64 LogCategoryMethodInfo = 0x0000000000000001 << 61;
+        public const System.Int64 LogCategoryMethodWarn = 0x0000000000000001 << 62;
         public const System.Int64 LogCategoryMethodError = 0x0000000000000001 << 63;
         public const System.Int64 LogCategoryAll = 0x7FFFFFFFFFFFFFFF;
         public const System.Int64 LogCategoryNone = 0;
@@ -46,6 +48,7 @@ namespace Eq.Utility
 
         private System.Int64 mOutputLogCategories = LogCategoryNone;
         private string mLogTag = "";
+        private int mDefaultIndent = 0;
 
         public LogController()
         {
@@ -71,6 +74,11 @@ namespace Eq.Utility
         public void SetLogTag(string logTag)
         {
             mLogTag = logTag;
+        }
+
+        public void ChangeDefaultIndent(int indent)
+        {
+            mDefaultIndent = indent;
         }
 
         public void CopyFrom(LogController copyFrom)
@@ -106,15 +114,28 @@ namespace Eq.Utility
 
         public void CategoryLog(System.Int64 category, params object[] contents)
         {
-            InnerCategoryLog(category, 0, contents);
+            InnerCategoryLog(category, mDefaultIndent, contents);
         }
 
         private void InnerCategoryLog(System.Int64 category, int indent, params object[] contents)
         {
-            if (category == LogCategoryMethodError)
+            if (category == LogCategoryMethodInfo || category == LogCategoryMethodWarn || category == LogCategoryMethodError)
             {
                 StringBuilder contentBuilder = new StringBuilder();
                 StackFrame lastStackFrame = new StackTrace(true).GetFrame(indent + 1);
+
+                if (category == LogCategoryMethodInfo)
+                {
+                    contentBuilder.Append("#INFO#");
+                }
+                else if (category == LogCategoryMethodWarn)
+                {
+                    contentBuilder.Append("#WARN#");
+                }
+                else if (category == LogCategoryMethodError)
+                {
+                    contentBuilder.Append("#ERROR#");
+                }
 
                 if (!string.IsNullOrEmpty(mLogTag))
                 {

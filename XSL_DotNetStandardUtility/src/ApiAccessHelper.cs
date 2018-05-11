@@ -45,7 +45,7 @@ namespace Eq.Utility
             }
         }
 
-        public TRes Execute()
+        public virtual TRes Execute()
         {
             HttpClient httpClient = new HttpClient();
             Task<HttpResponseMessage> responseMessage = null;

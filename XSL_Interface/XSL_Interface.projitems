@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)src\IThreadUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\AbstractTranslateExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\IRequestWorker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)src\DependencyServiceManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)src\PageNavigator.cs" />
   </ItemGroup>
 </Project>
