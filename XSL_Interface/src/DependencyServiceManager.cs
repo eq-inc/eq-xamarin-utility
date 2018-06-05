@@ -13,7 +13,7 @@ namespace Eq.Utility
                 if(sInstance == null)
                 {
                     LogController.Log(LogController.LogCategoryMethodError, "create instance");
-#if UNIT_TEST
+#if __UNIT_TEST__
                     sInstance = new UnitTestDependencyService();
 #else
                     sInstance = new LocalDependencyService();

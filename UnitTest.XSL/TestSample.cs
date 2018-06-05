@@ -3,7 +3,9 @@ using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Reflection;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace UnitTest.Xamarin
@@ -389,6 +391,51 @@ namespace UnitTest.Xamarin
             Assert.True(jsonInstanceStr.Contains("\"parameters value\""));
         }
 
+        internal class TestJson<T>
+        {
+            [JsonProperty(PropertyName = "jsonrpc")]
+            public string Jsonrpc;
+
+            [JsonProperty(PropertyName = "result")]
+            public T Result;
+
+            [JsonProperty(PropertyName = "id")]
+            public string Id;
+        }
+
+        internal class TestJsonResult
+        {
+        }
+
+        [Test]
+        public void JsonConvertTest3()
+        {
+            string[] jsonTextArray = new string[]
+            {
+                "{\"jsonrpc\": \"2.0\", \"result\": {}, \"id\": \"df721c80-0048-4bd3-b137-c2358be31df5\"}",
+            };
+
+            foreach(string jsonText in jsonTextArray)
+            {
+                try
+                {
+                    ByteArrayContent byteContent = new ByteArrayContent(System.Text.Encoding.ASCII.GetBytes(jsonText));
+                    HttpResponseMessage entity = new HttpResponseMessage();
+                    entity.Content = byteContent;
+                    Task<string> entityStr = entity.Content.ReadAsStringAsync();
+                    entityStr.Wait();
+
+                    TestJson</*string*/TestJsonResult> json = Newtonsoft.Json.JsonConvert.DeserializeObject<TestJson</*string*/TestJsonResult>>(entityStr.Result);
+                    Assert.True(json != null);
+                    Assert.True(json.Result != null);
+                }
+                catch (Exception e)
+                {
+                    Assert.True(false);
+                }
+            }
+        }
+
         [Test]
         public async void ApiAccessHelperTest()
         {
@@ -397,8 +444,26 @@ namespace UnitTest.Xamarin
             apiAccessHelper.Method = ApiAccessHelper<RequestToken, ResponseToken>.MethodType.Post;
             apiAccessHelper.Url = "http://api.zipaddress.net/?zipcode=2700023";
             apiAccessHelper.RequestEntity = requestToken;
+            ResponseToken response = null;
 
-            ResponseToken response = await apiAccessHelper.ExecuteAsync();
+            HttpResponseMessage responseMessage = await apiAccessHelper.ExecuteRawAsync();
+            if (responseMessage != null)
+            {
+                if (responseMessage.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    HttpContent entity = responseMessage.Content;
+                    if (entity != null)
+                    {
+                        Task<string> entityStr = entity.ReadAsStringAsync();
+                        entityStr.Wait();
+                        if (!string.IsNullOrEmpty(entityStr.Result))
+                        {
+                            response = JsonConvert.DeserializeObject<ResponseToken>(entityStr.Result);
+                        }
+                    }
+                }
+            }
+
             Assert.NotNull(response);
             Assert.NotNull(response.data);
         }

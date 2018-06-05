@@ -6,6 +6,20 @@ using System.Threading.Tasks;
 
 namespace Eq.Utility
 {
+    public delegate HttpResponseMessage Mock(object req);
+
+    public static class MockProvider
+    {
+        internal static Mock sMock = null;
+
+        public static void EnableTestMode(Mock mock)
+        {
+#if DEBUG
+            sMock = mock;
+#endif
+        }
+    }
+
     public class ApiAccessHelper<TReq, TRes>
     {
         public enum MethodType
@@ -45,8 +59,14 @@ namespace Eq.Utility
             }
         }
 
-        public virtual TRes Execute()
+        public virtual HttpResponseMessage ExecuteRaw()
         {
+#if DEBUG
+            if(MockProvider.sMock != null)
+            {
+                return MockProvider.sMock(RequestEntity);
+            }
+#endif
             HttpClient httpClient = new HttpClient();
             Task<HttpResponseMessage> responseMessage = null;
 
@@ -74,37 +94,33 @@ namespace Eq.Utility
                     break;
             }
 
-            TRes result = default(TRes);
-
-            if (responseMessage != null)
+            if(responseMessage != null)
             {
                 responseMessage.Wait();
-                if (responseMessage.Result.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    HttpContent entity = responseMessage.Result.Content;
-                    if (entity != null)
-                    {
-                        Task<string> entityStr = entity.ReadAsStringAsync();
-                        entityStr.Wait();
-                        if (!string.IsNullOrEmpty(entityStr.Result))
-                        {
-                            result = Newtonsoft.Json.JsonConvert.DeserializeObject<TRes>(entityStr.Result);
-                        }
-                    }
-                }
             }
 
-            return result;
+            return responseMessage.Result;
         }
 
-        public async Task<TRes> ExecuteAsync()
+        public Task<HttpResponseMessage> ExecuteRawAsync()
         {
-            HttpClient httpClient = new HttpClient();
-            HttpResponseMessage responseMessage = null;
-
-            foreach(KeyValuePair<string, List<string>> kvPair in mRequestHeaderDic)
+#if DEBUG
+            if (MockProvider.sMock != null)
             {
-                foreach(string value in kvPair.Value)
+                return new Task<HttpResponseMessage>(
+                    delegate()
+                    {
+                        return MockProvider.sMock(RequestEntity);
+                    }
+                );
+            }
+#endif
+            HttpClient httpClient = new HttpClient();
+            Task<HttpResponseMessage> responseMessage = null;
+
+            foreach (KeyValuePair<string, List<string>> kvPair in mRequestHeaderDic)
+            {
+                foreach (string value in kvPair.Value)
                 {
                     httpClient.DefaultRequestHeaders.TryAddWithoutValidation(kvPair.Key, value);
                 }
@@ -113,7 +129,7 @@ namespace Eq.Utility
             switch (Method)
             {
                 case MethodType.Get:
-                    responseMessage = await httpClient.GetAsync(Url);
+                    responseMessage = httpClient.GetAsync(Url);
                     break;
                 case MethodType.Post:
                     {
@@ -121,24 +137,31 @@ namespace Eq.Utility
                         string entityStr = Newtonsoft.Json.JsonConvert.SerializeObject(entity);
                         StringContent entityContent = new StringContent(entityStr, Encoding.UTF8, "application/json");
 
-                        responseMessage = await httpClient.PostAsync(Url, entityContent);
+                        responseMessage = httpClient.PostAsync(Url, entityContent);
                     }
                     break;
             }
 
+            return responseMessage;
+        }
+
+        public virtual TRes Execute()
+        {
+            HttpResponseMessage responseMessage = ExecuteRaw();
             TRes result = default(TRes);
 
-            if(responseMessage != null)
+            if (responseMessage != null)
             {
-                if(responseMessage.StatusCode == System.Net.HttpStatusCode.OK)
+                if (responseMessage.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     HttpContent entity = responseMessage.Content;
-                    if(entity != null)
+                    if (entity != null)
                     {
-                        string entityStr = await entity.ReadAsStringAsync();
-                        if (!string.IsNullOrEmpty(entityStr))
+                        Task<string> entityStr = entity.ReadAsStringAsync();
+                        entityStr.Wait();
+                        if (!string.IsNullOrEmpty(entityStr.Result))
                         {
-                            result = Newtonsoft.Json.JsonConvert.DeserializeObject<TRes>(entityStr);
+                            result = Newtonsoft.Json.JsonConvert.DeserializeObject<TRes>(entityStr.Result);
                         }
                     }
                 }
